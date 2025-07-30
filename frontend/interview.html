@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Preparation - SkillRAG</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>HireRAG</h2>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="interview.html" class="active">Interview Preparation</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+
+    <!-- Chat Area -->
+    <div class="chat-area">
+      <!-- Messages -->
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">👋 Welcome to SkillRAG Interview Prep! Upload your resume to get started.</div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+
+        <!-- Upload Resume -->
+        <label class="upload-btn" for="resumeInput">Upload Resume</label>
+        <input type="file" id="resumeInput" accept=".pdf,.doc,.docx,.txt" onchange="uploadResume(event)">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+      appendMessage('user', text);
+      userInput.value = '';
+
+      // Simulate bot response
+      setTimeout(() => {
+        appendMessage('bot', "🤖 This is a demo response for: " + text);
+      }, 800);
+    }
+
+    function appendMessage(sender, text) {
+      const div = document.createElement('div');
+      div.className = `message ${sender}`;
+      div.innerText = text;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function uploadResume(event) {
+      const file = event.target.files[0];
+      if (file) {
+        appendMessage('user', "📂 Uploaded resume: " + file.name);
+        setTimeout(() => {
+          appendMessage('bot', "✅ Resume received. Generating interview questions...");
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
