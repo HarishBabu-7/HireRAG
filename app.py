@@ -5,7 +5,7 @@ import numpy as np
 # Load model
 model = joblib.load('model/model.pkl')
 
-st.title("🌸 Iris Flower Predictor")
+st.title("Iris Flower Predictor")
 st.write("Enter flower measurements to predict the species.")
 
 # Input fields
