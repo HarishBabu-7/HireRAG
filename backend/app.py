@@ -1,22 +1,6 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-
-app = Flask(__name__)
-CORS(app)  # Allow frontend requests
-
-@app.route('/')
-def home():
-    return "SkillRAG Backend Running!"
-
-@app.route('/upload_resume', methods=['POST'])
-def upload_resume():
-    # Placeholder for resume upload
-    return jsonify({"message": "Resume uploaded successfully!"})
-
-@app.route('/chat', methods=['POST'])
-def chat():
-    user_input = request.json.get("message")
-    return jsonify({"reply": f"You said: {user_input}"})
-
-if __name__ == "__main__":
-    app.run(debug=True)
+import streamlit as st
+st.title("Rag model demo")
+st.write("This is a demo of the RAG model using Streamlit  !!")
+a=st.text_input("Enter your name here : ")
+if a:
+    st.success(f"Hello {a} !! Welcome to the RAG model")
